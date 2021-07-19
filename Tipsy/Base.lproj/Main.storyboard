@@ -224,6 +224,14 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="oie-aW-4Gx"/>
+                    <connections>
+                        <outlet property="cocktailIMG" destination="WCu-0v-W8H" id="hEa-AP-dIz"/>
+                        <outlet property="cocktailInfoLbl" destination="3eQ-ml-EKy" id="2Ab-ic-LdS"/>
+                        <outlet property="cocktailNameLbl" destination="7DI-5e-H4O" id="CmH-4y-b0a"/>
+                        <outlet property="favouritesIMG" destination="ba5-vK-KPm" id="dzL-6K-ee0"/>
+                        <outlet property="ingredientsTableView" destination="ubW-gG-tgw" id="oxz-Qu-SrF"/>
+                        <outlet property="instructionsLbl" destination="FKY-6F-xa7" id="RaU-Hi-MLh"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yni-eT-RDG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

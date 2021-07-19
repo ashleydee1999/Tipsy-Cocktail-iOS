@@ -10,6 +10,12 @@ import UIKit
 class CocktailDetailsViewController: UIViewController
 {
 
+    @IBOutlet weak var cocktailNameLbl: UILabel!
+    @IBOutlet weak var favouritesIMG: UIImageView!
+    @IBOutlet weak var cocktailIMG: UIImageView!
+    @IBOutlet weak var cocktailInfoLbl: UILabel!
+    @IBOutlet weak var instructionsLbl: UILabel!
+    @IBOutlet weak var ingredientsTableView: UITableView!
     override func viewDidLoad()
     {
         super.viewDidLoad()
