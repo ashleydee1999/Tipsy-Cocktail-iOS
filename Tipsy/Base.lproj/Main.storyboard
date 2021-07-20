@@ -96,7 +96,7 @@
         <!--Cocktail Details View Controller-->
         <scene sceneID="wMk-lu-riE">
             <objects>
-                <viewController id="IHt-q8-sgV" customClass="CocktailDetailsViewController" customModule="Tipsy" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CocktailDetailsViewController" id="IHt-q8-sgV" customClass="CocktailDetailsViewController" customModule="Tipsy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0jy-kz-VyJ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -111,20 +111,15 @@
                                             <constraint firstAttribute="width" constant="158" id="ilN-do-IgL"/>
                                         </constraints>
                                     </imageView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="303" translatesAutoresizingMaskIntoConstraints="NO" id="efB-JY-s9y">
-                                        <rect key="frame" x="5.5" y="8" width="403" height="50"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7DI-5e-H4O">
-                                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ba5-vK-KPm">
-                                                <rect key="frame" x="353" y="0.0" width="50" height="50"/>
-                                            </imageView>
-                                        </subviews>
-                                    </stackView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7DI-5e-H4O">
+                                        <rect key="frame" x="6" y="8" width="184" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ba5-vK-KPm">
+                                        <rect key="frame" x="353.5" y="8" width="55" height="50"/>
+                                    </imageView>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ubW-gG-tgw">
                                         <rect key="frame" x="8" y="322" width="398" height="264"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -196,18 +191,20 @@
                                     </stackView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="efB-JY-s9y" secondAttribute="trailing" constant="5.5" id="1nX-bh-aTv"/>
+                                    <constraint firstItem="WCu-0v-W8H" firstAttribute="top" secondItem="7Ko-pK-Eqm" secondAttribute="top" constant="66" id="0Rd-Xz-iY6"/>
                                     <constraint firstItem="3OC-to-aIJ" firstAttribute="top" secondItem="WCu-0v-W8H" secondAttribute="bottom" constant="28" id="6j0-Qz-MbB"/>
                                     <constraint firstItem="WCu-0v-W8H" firstAttribute="leading" secondItem="7Ko-pK-Eqm" secondAttribute="leading" constant="110" id="7xR-nk-fVT"/>
                                     <constraint firstAttribute="trailing" secondItem="WCu-0v-W8H" secondAttribute="trailing" constant="146" id="C7x-LQ-WZ7"/>
                                     <constraint firstItem="ubW-gG-tgw" firstAttribute="top" secondItem="3OC-to-aIJ" secondAttribute="bottom" constant="17" id="F0l-UR-710"/>
                                     <constraint firstAttribute="trailing" secondItem="3OC-to-aIJ" secondAttribute="trailing" constant="145.5" id="HR0-xp-29e"/>
-                                    <constraint firstItem="WCu-0v-W8H" firstAttribute="top" secondItem="efB-JY-s9y" secondAttribute="bottom" constant="8" symbolic="YES" id="Vbk-EQ-cLH"/>
+                                    <constraint firstAttribute="trailing" secondItem="ba5-vK-KPm" secondAttribute="trailing" constant="5.5" id="L1t-BB-J2P"/>
+                                    <constraint firstItem="7DI-5e-H4O" firstAttribute="leading" secondItem="7Ko-pK-Eqm" secondAttribute="leading" constant="5.5" id="P8p-Nx-140"/>
+                                    <constraint firstItem="7DI-5e-H4O" firstAttribute="top" secondItem="7Ko-pK-Eqm" secondAttribute="top" constant="8" id="Vu7-Nb-ocg"/>
                                     <constraint firstAttribute="trailing" secondItem="ubW-gG-tgw" secondAttribute="trailing" constant="8" id="Xyt-eX-35m"/>
-                                    <constraint firstItem="efB-JY-s9y" firstAttribute="leading" secondItem="7Ko-pK-Eqm" secondAttribute="leading" constant="5.5" id="Y6M-CQ-Yiu"/>
+                                    <constraint firstItem="ba5-vK-KPm" firstAttribute="leading" secondItem="7DI-5e-H4O" secondAttribute="trailing" constant="303" id="eTs-dg-rat"/>
                                     <constraint firstItem="3OC-to-aIJ" firstAttribute="leading" secondItem="7Ko-pK-Eqm" secondAttribute="leading" constant="110" id="j5X-f3-xf6"/>
-                                    <constraint firstItem="efB-JY-s9y" firstAttribute="top" secondItem="7Ko-pK-Eqm" secondAttribute="top" constant="8" id="n3w-iI-8gT"/>
                                     <constraint firstAttribute="bottom" secondItem="ubW-gG-tgw" secondAttribute="bottom" constant="222" id="pqZ-Ah-O3v"/>
+                                    <constraint firstItem="ba5-vK-KPm" firstAttribute="top" secondItem="7Ko-pK-Eqm" secondAttribute="top" constant="8" id="tuQ-Ri-8tW"/>
                                     <constraint firstItem="ubW-gG-tgw" firstAttribute="leading" secondItem="7Ko-pK-Eqm" secondAttribute="leading" constant="8" id="yiO-Ib-M7C"/>
                                 </constraints>
                                 <viewLayoutGuide key="contentLayoutGuide" id="Muf-Zv-Zuz"/>
@@ -335,7 +332,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Wd9-AG-Y20"/>
+        <segue reference="6LJ-5i-2N8"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="camera.filters" catalog="system" width="128" height="116"/>
