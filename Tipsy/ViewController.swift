@@ -1,9 +1,4 @@
-//
-//  ViewController.swift
-//  Tipsy
-//
-//  Created by IACD-Air-11 on 2021/07/13.
-//
+
 
 import UIKit
 
@@ -62,33 +57,12 @@ class ViewController: UIViewController, UICollectionViewDataSource , UICollectio
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
     {
-        print("\(cocktailCollection[indexPath.row].strDrink): \(cocktailCollection[indexPath.row].idDrink)")
+       // print("\(cocktailCollection[indexPath.row].strDrink): \(cocktailCollection[indexPath.row].idDrink)")
         
         let destination = storyboard?.instantiateViewController(identifier: "CocktailDetailsViewController") as? CocktailDetailsViewController
         destination!.cocktailID = cocktailCollection[indexPath.row].idDrink
         self.navigationController?.pushViewController(destination!, animated: true)
     }
-    
-    /*override func prepare(for segue: UIStoryboardSegue, sender: Any?)
-    {
-        print("Here we segue")
-        
-       /* if let cell = sender as? UICollectionViewCell,
-        let indexPath = self.cocktailCollectionView.indexPath(for: cell)
-        {
-            let destination = segue.destination as! CocktailDetailsViewController
-            print("We're dealing with this ID: \(cocktailCollection[indexPath.row].idDrink)")
-            destination.cocktailID = cocktailCollection[indexPath.row].idDrink
-            
-         }*/
-        
-        if let destination = segue.destination as? CocktailDetailsViewController
-        {
-            destination.cocktailID = cocktailCollection[(cocktailCollectionView.indexPathsForSelectedItems)!].idDrink
-        }
-        
-       
-    }*/
   
     func downloadCocktailsJSON(completed: @escaping () -> ())
      {
@@ -124,9 +98,11 @@ class ViewController: UIViewController, UICollectionViewDataSource , UICollectio
                     {
                         completed()
                     }
-                } catch {
-                    print(error)
-                }
+            }
+            catch
+            {
+                print(error)
+            }
          }.resume()
      }
 }
