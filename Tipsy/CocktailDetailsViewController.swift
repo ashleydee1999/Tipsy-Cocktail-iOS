@@ -6,21 +6,25 @@
 //
 
 import UIKit
+import Foundation
 
 class CocktailDetailsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource
 {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    {
         return ingredientsName.count
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
+    {
         let cell = ingredientsTableView.dequeueReusableCell(withIdentifier: "ingredientsCustomCell") as! ingredientsCustomTableViewCell
         
+        cell.cocktailIMG.image = UIImage(named: ingredientsName[indexPath.row])
         cell.ingredientsLbl?.text = ingredientsName[indexPath.row]
         cell.measurementsLbl?.text = ingredientsMeasure[indexPath.row]
         
         
-        print("These are: \(ingredientsName[indexPath.row]): \(ingredientsMeasure[indexPath.row])")
+        //print("These are: \(ingredientsName[indexPath.row]): \(ingredientsMeasure[indexPath.row])")
         
         return cell
     }
@@ -38,6 +42,8 @@ class CocktailDetailsViewController: UIViewController, UITableViewDelegate, UITa
     var simpleArray: SearchCocktailsProperties?
     var ingredientsName: [String] = []
     var ingredientsMeasure: [String] = []
+    var prepInstructions: [String] = []
+    
     
     override func viewDidLoad()
     {
@@ -48,7 +54,7 @@ class CocktailDetailsViewController: UIViewController, UITableViewDelegate, UITa
     override func viewWillAppear(_ animated: Bool)
     {
         super.viewWillAppear(animated)
-        //print("The received ID is \(cocktailID!)")
+        print("The received ID is \(cocktailID!)")
         
         downloadCocktailDetaillsJSON
         {
@@ -63,12 +69,51 @@ class CocktailDetailsViewController: UIViewController, UITableViewDelegate, UITa
         ingredientsTableView.dataSource = self
         
     }
+    func removeWhiteSpaces(str:String) -> String
+    {
+        var newStr = str
+        for i in 0..<str.count{
+            let index = str.index(str.startIndex, offsetBy: i)
+            print(str[index])
+            if str[index] != " "{
+                return newStr
+            }
+            else{
+                newStr.remove(at: newStr.startIndex)
+            }
+        }
+        return newStr
+    }
     func setUp()
     {
         self.cocktailNameLbl.text = self.simpleArray?.strDrink
         self.cocktailIMG.downloaded(from: self.simpleArray?.strDrinkThumb ?? "")
+        self.cocktailInfoLbl.text = "This a/an \((self.simpleArray?.strAlcoholic)!) \((self.simpleArray?.strCategory)!)"
         
         let mirror = Mirror(reflecting: simpleArray!)
+        //var rawInstructions: [String] = []
+        let theInstructions = self.simpleArray!.strInstructions
+        
+        
+        let splitStringArray = theInstructions.split(separator: ".").map({ (substring) in
+             return String(substring)
+         })
+        
+        prepInstructions = splitStringArray
+        
+
+        for i in 0 ..< prepInstructions.count
+        {
+            prepInstructions[i] = removeWhiteSpaces(str: prepInstructions[i])
+        }
+        //print("There are \(prepInstructions.count) instructions")
+        
+        instructionsLbl.text = ""
+        for i in 0 ..< prepInstructions.count
+        {
+            instructionsLbl.text?.append("\(i+1): \(prepInstructions[i]) \n\n")
+            print(prepInstructions[i])
+        }
         
         for child in mirror.children
         {

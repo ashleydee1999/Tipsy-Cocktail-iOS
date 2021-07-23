@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 
+//This is for the home page
 struct Cocktails: Decodable
 {
     let drinks: [CocktailsProperties]
@@ -19,6 +20,8 @@ struct CocktailsProperties: Decodable
     let strDrinkThumb: String
     let idDrink: String
 }
+
+//End
 
 //Used when Searching by ID
 struct SearchCocktails: Decodable
@@ -66,7 +69,7 @@ struct SearchCocktailsProperties: Decodable
     let strMeasure15: String?
     
 }
-
+//End
 
 extension UIImageView
 {
