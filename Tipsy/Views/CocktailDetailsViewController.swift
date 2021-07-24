@@ -51,6 +51,7 @@ class CocktailDetailsViewController: UIViewController, UITableViewDelegate, UITa
 
         // Do any additional setup after loading the view.
     }
+    
     override func viewWillAppear(_ animated: Bool)
     {
         super.viewWillAppear(animated)
@@ -69,6 +70,7 @@ class CocktailDetailsViewController: UIViewController, UITableViewDelegate, UITa
         ingredientsTableView.dataSource = self
         
     }
+    
     func removeWhiteSpaces(str:String) -> String
     {
         var newStr = str

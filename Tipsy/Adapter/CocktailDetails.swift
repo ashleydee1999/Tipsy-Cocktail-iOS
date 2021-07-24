@@ -71,6 +71,85 @@ struct SearchCocktailsProperties: Decodable
 }
 //End
 
+//4 Filters
+struct FilterItem: Identifiable
+{
+    let id = UUID()
+    let name: String
+    let img: String
+    let url: String
+}
+extension FilterItem
+{
+    static func all() -> [FilterItem]
+    {
+        return
+        (
+            [FilterItem(
+                name: "Categories",
+                img:"CategoriesIMG",
+                url:"https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list"),
+             FilterItem(
+                 name: "Glasses",
+                img:"GlassesIMG",
+                url:"https://www.thecocktaildb.com/api/json/v1/1/list.php?g=list"),
+             FilterItem(
+                 name: "Ingredients",
+                img:"IngredientsIMG",
+                url:"https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list"),
+             FilterItem(
+                 name: "Alcoholic",
+                img:"AlcoholicIMG",
+                url:"https://www.thecocktaildb.com/api/json/v1/1/list.php?a=list")
+        ])
+    }
+}
+//End of 4 Filters
+
+//Categories Filter Details
+struct FilterCategoriesDetailsCocktails: Decodable
+{
+    let drinks: [FilterCategoriesDetailsProperties]
+}
+struct FilterCategoriesDetailsProperties: Decodable
+{
+    let strCategory: String
+}
+//End of Categories Filter Details
+
+//Glasses Filter Details
+struct FilterGlassesDetailsCocktails: Decodable
+{
+    let drinks: [FilterGlassesDetailsProperties]
+}
+struct FilterGlassesDetailsProperties: Decodable
+{
+    let strGlass: String
+}
+//End of Glasses Filter Details
+
+//Ingredients Filter Details
+struct FilterIngredientsDetailsCocktails: Decodable
+{
+    let drinks: [FilterIngredientsDetailsProperties]
+}
+struct FilterIngredientsDetailsProperties: Decodable
+{
+    let strIngredient1: String
+}
+//End of Ingredients Filter Details
+
+//Ingredients Filter Details
+struct FilterAlcoholicDetailsCocktails: Decodable
+{
+    let drinks: [FilterAlcoholicDetailsProperties]
+}
+struct FilterAlcoholicDetailsProperties: Decodable
+{
+    let strAlcoholic: String
+}
+//End of Ingredients Filter Details
+
 extension UIImageView
 {
     func downloaded(from url: URL, contentMode mode: ContentMode = .scaleAspectFit)
