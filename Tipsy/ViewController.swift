@@ -2,7 +2,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UICollectionViewDataSource , UICollectionViewDelegate
+class ViewController: UIViewController, UICollectionViewDataSource , UICollectionViewDelegate, UICollectionViewDelegateFlowLayout
 {
     
     var cocktailCollection = [CocktailsProperties]()
@@ -50,6 +50,10 @@ class ViewController: UIViewController, UICollectionViewDataSource , UICollectio
         cell.cocktailIMG.downloaded(from: (cocktailCollection[indexPath.row].strDrinkThumb))
         
         return cell;
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 185, height: 216)
     }
     
    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
@@ -105,12 +109,6 @@ class ViewController: UIViewController, UICollectionViewDataSource , UICollectio
             }
          }.resume()
      }
-}
-extension ViewController: UICollectionViewDelegateFlowLayout
-{
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 185, height: 216)
-    }
 }
 
 

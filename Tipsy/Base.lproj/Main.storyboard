@@ -84,17 +84,75 @@
                     <view key="view" contentMode="scaleToFill" id="EGo-q7-h4o">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="7WG-v9-b7E">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="urd-ZL-S4h">
+                                    <size key="itemSize" width="185" height="216"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="searchCellcocktailID" id="iiL-tx-hcI" customClass="SearchCocktailCollectionViewCell" customModule="Tipsy" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="185" height="216"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="ppB-Zi-vKh">
+                                            <rect key="frame" x="0.0" y="0.0" width="185" height="216"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BT7-mR-sjH">
+                                                    <rect key="frame" x="6.5" y="5" width="172" height="171"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="171" id="Ky1-ch-wQo"/>
+                                                        <constraint firstAttribute="width" constant="172" id="e9k-zS-qRZ"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5ed-lU-6kY">
+                                                    <rect key="frame" x="8" y="180" width="169" height="33"/>
+                                                    <fontDescription key="fontDescription" name="NotoSansMyanmar-Regular" family="Noto Sans Myanmar" pointSize="15"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="5ed-lU-6kY" secondAttribute="bottom" constant="3" id="0MW-a5-qGd"/>
+                                                <constraint firstItem="BT7-mR-sjH" firstAttribute="leading" secondItem="ppB-Zi-vKh" secondAttribute="leading" constant="6.5" id="1Cs-nk-gpf"/>
+                                                <constraint firstItem="5ed-lU-6kY" firstAttribute="top" secondItem="BT7-mR-sjH" secondAttribute="bottom" constant="4" id="8J0-B6-EWw"/>
+                                                <constraint firstAttribute="trailing" secondItem="5ed-lU-6kY" secondAttribute="trailing" constant="8" id="bzc-MR-k1H"/>
+                                                <constraint firstAttribute="trailing" secondItem="BT7-mR-sjH" secondAttribute="trailing" constant="6.5" id="iER-Um-w7j"/>
+                                                <constraint firstItem="5ed-lU-6kY" firstAttribute="leading" secondItem="ppB-Zi-vKh" secondAttribute="leading" constant="8" id="x7a-bc-N04"/>
+                                                <constraint firstItem="BT7-mR-sjH" firstAttribute="top" secondItem="ppB-Zi-vKh" secondAttribute="top" constant="5" id="xeO-Yt-XKt"/>
+                                            </constraints>
+                                        </collectionViewCellContentView>
+                                        <size key="customSize" width="185" height="216"/>
+                                        <connections>
+                                            <outlet property="searchCocktailIMG" destination="BT7-mR-sjH" id="GoH-z5-qqx"/>
+                                            <outlet property="searchCocktailLbl" destination="5ed-lU-6kY" id="25u-P9-DLb"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="ehi-je-9qa"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="7WG-v9-b7E" firstAttribute="leading" secondItem="ehi-je-9qa" secondAttribute="leading" id="Dal-Cf-UeD"/>
+                            <constraint firstItem="7WG-v9-b7E" firstAttribute="top" secondItem="ehi-je-9qa" secondAttribute="top" id="gOh-4L-iE6"/>
+                            <constraint firstItem="7WG-v9-b7E" firstAttribute="bottom" secondItem="ehi-je-9qa" secondAttribute="bottom" id="hXz-wr-lah"/>
+                            <constraint firstItem="7WG-v9-b7E" firstAttribute="trailing" secondItem="ehi-je-9qa" secondAttribute="trailing" id="xwA-qA-fYP"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="rpK-m2-wHZ"/>
                     <connections>
-                        <segue destination="IHt-q8-sgV" kind="show" id="Tu7-Op-gmu"/>
+                        <outlet property="searchCollectionView" destination="7WG-v9-b7E" id="Ioq-Iq-5QR"/>
+                        <segue destination="IHt-q8-sgV" kind="show" identifier="searchCocktailDetailsSegue" id="Tu7-Op-gmu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YyN-y3-09L" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2499" y="864"/>
+            <point key="canvasLocation" x="2498.5507246376815" y="863.83928571428567"/>
         </scene>
         <!--Cocktail Details View Controller-->
         <scene sceneID="wMk-lu-riE">
@@ -105,7 +163,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0aU-wJ-DoS">
-                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <rect key="frame" x="0.0" y="140" width="414" height="673"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cocktail Name" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Cd-tQ-oX7">
                                         <rect key="frame" x="21" y="16" width="111" height="20.5"/>
@@ -370,8 +428,8 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="SPa-5h-4G8" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" systemItem="search" id="pRb-Ez-tcS"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="edL-Sc-71p">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="edL-Sc-71p">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -385,7 +443,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Wd9-AG-Y20"/>
+        <segue reference="Tu7-Op-gmu"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="camera.filters" catalog="system" width="128" height="116"/>
