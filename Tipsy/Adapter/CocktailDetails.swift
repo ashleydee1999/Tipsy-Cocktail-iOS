@@ -8,7 +8,6 @@
 import Foundation
 import UIKit
 
-//This is for the home page
 struct Cocktails: Decodable
 {
     let drinks: [CocktailsProperties]
@@ -16,27 +15,13 @@ struct Cocktails: Decodable
 
 struct CocktailsProperties: Decodable
 {
-    let strDrink: String
-    let strDrinkThumb: String
-    let idDrink: String
-}
-
-//End
-
-//Used when Searching by ID
-struct SearchCocktails: Decodable
-{
-    let drinks: [SearchCocktailsProperties]
-}
-
-struct SearchCocktailsProperties: Decodable
-{
-    let strDrink: String
-    let strCategory: String
-    let strAlcoholic: String
-    let strGlass: String
-    let strInstructions: String
-    let strDrinkThumb: String
+    let idDrink: String?
+    let strDrink: String?
+    let strCategory: String?
+    let strAlcoholic: String?
+    let strGlass: String?
+    let strInstructions: String?
+    let strDrinkThumb: String?
     let strIngredient1: String?
     let strIngredient2: String?
     let strIngredient3: String?
@@ -106,49 +91,6 @@ extension FilterItem
 }
 //End of 4 Filters
 
-//Categories Filter Details
-struct FilterCategoriesDetailsCocktails: Decodable
-{
-    let drinks: [FilterCategoriesDetailsProperties]
-}
-struct FilterCategoriesDetailsProperties: Decodable
-{
-    let strCategory: String
-}
-//End of Categories Filter Details
-
-//Glasses Filter Details
-struct FilterGlassesDetailsCocktails: Decodable
-{
-    let drinks: [FilterGlassesDetailsProperties]
-}
-struct FilterGlassesDetailsProperties: Decodable
-{
-    let strGlass: String
-}
-//End of Glasses Filter Details
-
-//Ingredients Filter Details
-struct FilterIngredientsDetailsCocktails: Decodable
-{
-    let drinks: [FilterIngredientsDetailsProperties]
-}
-struct FilterIngredientsDetailsProperties: Decodable
-{
-    let strIngredient1: String
-}
-//End of Ingredients Filter Details
-
-//Ingredients Filter Details
-struct FilterAlcoholicDetailsCocktails: Decodable
-{
-    let drinks: [FilterAlcoholicDetailsProperties]
-}
-struct FilterAlcoholicDetailsProperties: Decodable
-{
-    let strAlcoholic: String
-}
-//End of Ingredients Filter Details
 
 extension UIImageView
 {

@@ -57,7 +57,7 @@ class FilterViewController: UIViewController, UICollectionViewDataSource , UICol
         
         let destination = storyboard?.instantiateViewController(identifier: "FilterDetailsViewController") as? FilterDetailsViewController
         destination!.fDetailsURL = filterCollection[indexPath.row].url
-    destination!.chosenFilter = filterCollection[indexPath.row].name
+        destination!.chosenFilter = filterCollection[indexPath.row].name
         self.navigationController?.pushViewController(destination!, animated: true)
     }
 }

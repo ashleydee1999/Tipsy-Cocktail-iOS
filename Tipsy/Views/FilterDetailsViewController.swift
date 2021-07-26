@@ -11,7 +11,7 @@ class FilterDetailsViewController: UIViewController, UITableViewDelegate, UITabl
 {
 
     @IBOutlet weak var fDetailsTableView: UITableView!
-    var fDetailsCollection = [FilterCategoriesDetailsProperties]()
+    var fDetailsCollection = [CocktailsProperties]()
     var fDetailsURL: String?
     var chosenFilter: String?
     
@@ -25,32 +25,13 @@ class FilterDetailsViewController: UIViewController, UITableViewDelegate, UITabl
     {
         super.viewWillAppear(animated)
         
-        switch (chosenFilter!)
-        {
-            case "Categories":
-                downloadCategoriesDetaillsJSON {
-                    self.fDetailsTableView.reloadData()
-                }
-                
-            case "Glasses":
-                downloadGlassesDetaillsJSON {
-                    self.fDetailsTableView.reloadData()
-                }
-        
-            case "Ingredients":
-                downloadIngredientsDetaillsJSON {
-                    self.fDetailsTableView.reloadData()
-                }
-        
-            case "Alcoholic":
-                downloadAlcoholicDetaillsJSON {
-                    self.fDetailsTableView.reloadData()
-                }
-            
-        
-            default:
-                print("No Options Selected")
-            }
+        print("fDetailsURL")
+        downloadCategoriesDetaillsJSON {
+            print("fDetailsURL: \(self.fDetailsURL!)")
+            print("chosenFilter: \(self.chosenFilter!)")
+            self.fDetailsTableView.reloadData()
+           
+        }
         
         fDetailsTableView.delegate = self
         fDetailsTableView.dataSource = self
@@ -66,8 +47,27 @@ class FilterDetailsViewController: UIViewController, UITableViewDelegate, UITabl
     {
         let cell = fDetailsTableView.dequeueReusableCell(withIdentifier: "fDetailsCustomCell") as! FilterDetailsCustomTableViewCell
         
-        cell.filterDetailsIMG.image = UIImage(named: "\(fDetailsCollection[indexPath.row].strCategory)IMG")
-        cell.filterDetailsLbl?.text = fDetailsCollection[indexPath.row].strCategory
+        switch chosenFilter
+        {
+            case "Categories":
+                cell.filterDetailsLbl?.text = fDetailsCollection[indexPath.row].strCategory!
+                //cell.filterDetailsIMG.image = UIImage(named: "\(fDetailsCollection[indexPath.row].strDrink!)IMG")
+                
+            case "Glasses":
+                cell.filterDetailsLbl?.text = fDetailsCollection[indexPath.row].strGlass!
+                //cell.filterDetailsIMG.image = UIImage(named: "\(fDetailsCollection[indexPath.row].strDrink!)IMG")
+                
+            case "Ingredients":
+                cell.filterDetailsLbl?.text = fDetailsCollection[indexPath.row].strIngredient1!
+                //cell.filterDetailsIMG.image = UIImage(named: "\(fDetailsCollection[indexPath.row].strDrink!)IMG")
+                
+            case "Alcoholic":
+                cell.filterDetailsLbl?.text = fDetailsCollection[indexPath.row].strAlcoholic!
+                //cell.filterDetailsIMG.image = UIImage(named: "\(fDetailsCollection[indexPath.row].strDrink!)IMG")
+            default:
+                print("No filter was chosen")
+            
+        }
         
         return cell
     }
@@ -102,7 +102,7 @@ class FilterDetailsViewController: UIViewController, UITableViewDelegate, UITabl
 
         do
         {
-            self.fDetailsCollection = try jsonDecoder.decode(FilterCategoriesDetailsCocktails.self, from: unwrappedData).drinks
+            self.fDetailsCollection = try jsonDecoder.decode(Cocktails.self, from: unwrappedData).drinks
                 DispatchQueue.main.async
                 {
                     completed()
@@ -110,133 +110,9 @@ class FilterDetailsViewController: UIViewController, UITableViewDelegate, UITabl
             } catch {
                 print(error)
             }
+            
         }.resume()
     
     }
     
-    func downloadGlassesDetaillsJSON(completed: @escaping () -> ())
-    {
-    
-    //print("The Query URL is: \(queryURL)")
-    let url = URL(string: (fDetailsURL)!)!
-        let urlSession = URLSession.shared
-        let urlRequest = URLRequest(url: url)
-
-        let task = urlSession.dataTask(with: urlRequest)
-        {
-            data, urlResponse, error in
-            
-            if let error = error
-            {
-                
-                print("Error: \(error.localizedDescription)")
-                return
-            }
-            
-            guard let unwrappedData = data else
-            {
-                print("No data")
-                return
-            }
-            
-            
-            let jsonDecoder = JSONDecoder()
-
-        do
-        {
-            self.fDetailsCollection = try jsonDecoder.decode(FilterCategoriesDetailsCocktails.self, from: unwrappedData).drinks
-                DispatchQueue.main.async
-                {
-                    completed()
-                }
-            } catch {
-                print(error)
-            }
-        }.resume()
-    
-    }
-    
-    func downloadIngredientsDetaillsJSON(completed: @escaping () -> ())
-    {
-    
-    //print("The Query URL is: \(queryURL)")
-    let url = URL(string: (fDetailsURL)!)!
-        let urlSession = URLSession.shared
-        let urlRequest = URLRequest(url: url)
-
-        let task = urlSession.dataTask(with: urlRequest)
-        {
-            data, urlResponse, error in
-            
-            if let error = error
-            {
-                
-                print("Error: \(error.localizedDescription)")
-                return
-            }
-            
-            guard let unwrappedData = data else
-            {
-                print("No data")
-                return
-            }
-            
-            
-            let jsonDecoder = JSONDecoder()
-
-        do
-        {
-            self.fDetailsCollection = try jsonDecoder.decode(FilterCategoriesDetailsCocktails.self, from: unwrappedData).drinks
-                DispatchQueue.main.async
-                {
-                    completed()
-                }
-            } catch {
-                print(error)
-            }
-        }.resume()
-    
-    }
-    
-    func downloadAlcoholicDetaillsJSON(completed: @escaping () -> ())
-    {
-    
-    //print("The Query URL is: \(queryURL)")
-    let url = URL(string: (fDetailsURL)!)!
-        let urlSession = URLSession.shared
-        let urlRequest = URLRequest(url: url)
-
-        let task = urlSession.dataTask(with: urlRequest)
-        {
-            data, urlResponse, error in
-            
-            if let error = error
-            {
-                
-                print("Error: \(error.localizedDescription)")
-                return
-            }
-            
-            guard let unwrappedData = data else
-            {
-                print("No data")
-                return
-            }
-            
-            
-            let jsonDecoder = JSONDecoder()
-
-        do
-        {
-            self.fDetailsCollection = try jsonDecoder.decode(FilterCategoriesDetailsCocktails.self, from: unwrappedData).drinks
-                DispatchQueue.main.async
-                {
-                    completed()
-                }
-            } catch {
-                print(error)
-            }
-        }.resume()
-    
-    }
 }

@@ -39,7 +39,7 @@ class ViewController: UIViewController, UICollectionViewDataSource , UICollectio
     {
         let cell = cocktailCollectionView.dequeueReusableCell(withReuseIdentifier: "cocktailID", for: indexPath) as! CocktailCollectionViewCell
 
-        cell.cocktailLbl.text = cocktailCollection[indexPath.row].strDrink.uppercased()
+        cell.cocktailLbl.text = cocktailCollection[indexPath.row].strDrink!.uppercased()
         
         cell.cocktailIMG.layer.cornerRadius = cell.cocktailIMG.frame.size.width/2
         cell.cocktailIMG.clipsToBounds = false
@@ -47,7 +47,7 @@ class ViewController: UIViewController, UICollectionViewDataSource , UICollectio
         cell.cocktailIMG.layer.shadowOpacity = 0.4
         cell.cocktailIMG.layer.shadowOffset =  CGSize(width: 2, height: 2)
         cell.cocktailIMG.layer.shadowRadius = 7
-        cell.cocktailIMG.downloaded(from: (cocktailCollection[indexPath.row].strDrinkThumb))
+        cell.cocktailIMG.downloaded(from: (cocktailCollection[indexPath.row].strDrinkThumb!))
         
         return cell;
     }
@@ -59,9 +59,9 @@ class ViewController: UIViewController, UICollectionViewDataSource , UICollectio
    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 25, left: 13, bottom: 0, right: 13)
     }
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
     {
-       // print("\(cocktailCollection[indexPath.row].strDrink): \(cocktailCollection[indexPath.row].idDrink)")
         
         let destination = storyboard?.instantiateViewController(identifier: "CocktailDetailsViewController") as? CocktailDetailsViewController
         destination!.cocktailID = cocktailCollection[indexPath.row].idDrink

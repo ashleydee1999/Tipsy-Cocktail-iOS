@@ -64,7 +64,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UICollectionV
     {
         let cell = searchCollectionView.dequeueReusableCell(withReuseIdentifier: "searchCellcocktailID", for: indexPath) as! SearchCocktailCollectionViewCell
 
-        cell.searchCocktailLbl.text = cocktailCollection[indexPath.row].strDrink.uppercased()
+        cell.searchCocktailLbl.text = cocktailCollection[indexPath.row].strDrink!.uppercased()
         
         cell.searchCocktailIMG.layer.cornerRadius = cell.searchCocktailIMG.frame.size.width/2
         cell.searchCocktailIMG.clipsToBounds = false
@@ -72,7 +72,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UICollectionV
         cell.searchCocktailIMG.layer.shadowOpacity = 0.4
         cell.searchCocktailIMG.layer.shadowOffset =  CGSize(width: 2, height: 2)
         cell.searchCocktailIMG.layer.shadowRadius = 7
-        cell.searchCocktailIMG.downloaded(from: (cocktailCollection[indexPath.row].strDrinkThumb))
+        cell.searchCocktailIMG.downloaded(from: (cocktailCollection[indexPath.row].strDrinkThumb!))
         
         return cell;
     }

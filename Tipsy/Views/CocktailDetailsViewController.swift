@@ -24,8 +24,6 @@ class CocktailDetailsViewController: UIViewController, UITableViewDelegate, UITa
         cell.measurementsLbl?.text = ingredientsMeasure[indexPath.row]
         
         
-        //print("These are: \(ingredientsName[indexPath.row]): \(ingredientsMeasure[indexPath.row])")
-        
         return cell
     }
     
@@ -38,8 +36,8 @@ class CocktailDetailsViewController: UIViewController, UITableViewDelegate, UITa
     @IBOutlet weak var ingredientsTableView: UITableView!
     
     var cocktailID: String?
-    var cocktailDetailsCollection = [SearchCocktailsProperties]()
-    var simpleArray: SearchCocktailsProperties?
+    var cocktailDetailsCollection = [CocktailsProperties]()
+    var simpleArray: CocktailsProperties?
     var ingredientsName: [String] = []
     var ingredientsMeasure: [String] = []
     var prepInstructions: [String] = []
@@ -97,7 +95,7 @@ class CocktailDetailsViewController: UIViewController, UITableViewDelegate, UITa
         let theInstructions = self.simpleArray!.strInstructions
         
         
-        let splitStringArray = theInstructions.split(separator: ".").map({ (substring) in
+        let splitStringArray = theInstructions!.split(separator: ".").map({ (substring) in
              return String(substring)
          })
         
@@ -108,13 +106,12 @@ class CocktailDetailsViewController: UIViewController, UITableViewDelegate, UITa
         {
             prepInstructions[i] = removeWhiteSpaces(str: prepInstructions[i])
         }
-        //print("There are \(prepInstructions.count) instructions")
         
         instructionsLbl.text = ""
         for i in 0 ..< prepInstructions.count
         {
             instructionsLbl.text?.append("\(i+1): \(prepInstructions[i]) \n\n")
-            print(prepInstructions[i])
+           // print(prepInstructions[i])
         }
         
         for child in mirror.children
@@ -146,7 +143,6 @@ class CocktailDetailsViewController: UIViewController, UITableViewDelegate, UITa
     {
     let queryURL = "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=\(cocktailID!)"
     
-    //print("The Query URL is: \(queryURL)")
     let url = URL(string: queryURL)!
         let urlSession = URLSession.shared
         let urlRequest = URLRequest(url: url)
@@ -173,7 +169,7 @@ class CocktailDetailsViewController: UIViewController, UITableViewDelegate, UITa
 
         do
         {
-            self.cocktailDetailsCollection = try jsonDecoder.decode(SearchCocktails.self, from: unwrappedData).drinks
+            self.cocktailDetailsCollection = try jsonDecoder.decode(Cocktails.self, from: unwrappedData).drinks
                 DispatchQueue.main.async
                 {
                     completed()
