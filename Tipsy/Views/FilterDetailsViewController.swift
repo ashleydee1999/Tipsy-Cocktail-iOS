@@ -14,6 +14,10 @@ class FilterDetailsViewController: UIViewController, UITableViewDelegate, UITabl
     var fDetailsCollection = [CocktailsProperties]()
     var fDetailsURL: String?
     var chosenFilter: String?
+    var chosenIngredient: String?
+    var chosenAlcoholic: String?
+    var chosenGlass: String?
+    var chosenCategory: String?
     
     override func viewDidLoad()
     {
@@ -50,18 +54,22 @@ class FilterDetailsViewController: UIViewController, UITableViewDelegate, UITabl
         switch chosenFilter
         {
             case "Categories":
+                chosenCategory = fDetailsCollection[indexPath.row].strCategory!
                 cell.filterDetailsLbl?.text = fDetailsCollection[indexPath.row].strCategory!
                 //cell.filterDetailsIMG.image = UIImage(named: "\(fDetailsCollection[indexPath.row].strDrink!)IMG")
                 
             case "Glasses":
+                chosenGlass = fDetailsCollection[indexPath.row].strGlass!
                 cell.filterDetailsLbl?.text = fDetailsCollection[indexPath.row].strGlass!
                 //cell.filterDetailsIMG.image = UIImage(named: "\(fDetailsCollection[indexPath.row].strDrink!)IMG")
                 
             case "Ingredients":
+                chosenIngredient = fDetailsCollection[indexPath.row].strIngredient1!
                 cell.filterDetailsLbl?.text = fDetailsCollection[indexPath.row].strIngredient1!
                 //cell.filterDetailsIMG.image = UIImage(named: "\(fDetailsCollection[indexPath.row].strDrink!)IMG")
                 
             case "Alcoholic":
+                chosenAlcoholic = fDetailsCollection[indexPath.row].strAlcoholic!
                 cell.filterDetailsLbl?.text = fDetailsCollection[indexPath.row].strAlcoholic!
                 //cell.filterDetailsIMG.image = UIImage(named: "\(fDetailsCollection[indexPath.row].strDrink!)IMG")
             default:
@@ -71,6 +79,45 @@ class FilterDetailsViewController: UIViewController, UITableViewDelegate, UITabl
         
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+    {
+        
+        performSegue(withIdentifier: "choiceToDetailsSegue", sender: self)
+    }
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+    {
+        
+        if let destination = segue.destination as? FilterChoiceViewController
+        {
+            switch chosenFilter
+            {
+                case "Categories":
+                    destination.chosenCategory = fDetailsCollection[(fDetailsTableView.indexPathForSelectedRow?.row)!].strCategory
+                    destination.chosenFilter = chosenFilter
+                    
+                case "Glasses":
+                    destination.chosenGlass = fDetailsCollection[(fDetailsTableView.indexPathForSelectedRow?.row)!].strGlass
+                    destination.chosenFilter = chosenFilter
+                    
+                case "Ingredients":
+                    destination.chosenIngredient = fDetailsCollection[(fDetailsTableView.indexPathForSelectedRow?.row)!].strIngredient1
+                    destination.chosenFilter = chosenFilter
+                    
+                case "Alcoholic":
+                    destination.chosenAlcoholic = fDetailsCollection[(fDetailsTableView.indexPathForSelectedRow?.row)!].strAlcoholic
+                    destination.chosenFilter = chosenFilter
+                   
+                default:
+                    print("No filter was chosen")
+                
+            }
+           
+        }
+    }
+
     
     func downloadCategoriesDetaillsJSON(completed: @escaping () -> ())
     {

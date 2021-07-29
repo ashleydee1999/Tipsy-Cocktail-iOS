@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		82309F5026AF6E10002A0CE1 /* FilterChoiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82309F4F26AF6E10002A0CE1 /* FilterChoiceViewController.swift */; };
+		82309F5226AF7630002A0CE1 /* filterChoiceCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82309F5126AF7630002A0CE1 /* filterChoiceCollectionViewCell.swift */; };
 		8276BCB0269E1A9400ADF67D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8276BCAF269E1A9400ADF67D /* AppDelegate.swift */; };
 		8276BCB2269E1A9400ADF67D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8276BCB1269E1A9400ADF67D /* SceneDelegate.swift */; };
 		8276BCB4269E1A9400ADF67D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8276BCB3269E1A9400ADF67D /* ViewController.swift */; };
@@ -26,6 +28,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		82309F4F26AF6E10002A0CE1 /* FilterChoiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterChoiceViewController.swift; sourceTree = "<group>"; };
+		82309F5126AF7630002A0CE1 /* filterChoiceCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = filterChoiceCollectionViewCell.swift; sourceTree = "<group>"; };
 		8276BCAC269E1A9400ADF67D /* Tipsy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tipsy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8276BCAF269E1A9400ADF67D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8276BCB1269E1A9400ADF67D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -96,6 +100,7 @@
 				8276BCB3269E1A9400ADF67D /* ViewController.swift */,
 				82E9817E26AC914F00B411E0 /* FilterDetailsViewController.swift */,
 				82E9817C26AC808400B411E0 /* FilterViewController.swift */,
+				82309F4F26AF6E10002A0CE1 /* FilterChoiceViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -104,6 +109,7 @@
 			isa = PBXGroup;
 			children = (
 				8276BCC326A3424500ADF67D /* CocktailCollectionViewCell.swift */,
+				82309F5126AF7630002A0CE1 /* filterChoiceCollectionViewCell.swift */,
 				82E9817426AB846900B411E0 /* SearchCollectionViewCell.swift */,
 				82E9817626AC7D3100B411E0 /* FilterCollectionViewCell.swift */,
 				82E9818026AC921A00B411E0 /* FilterDetailsCustomTableViewCell.swift */,
@@ -207,10 +213,12 @@
 				8276BCB4269E1A9400ADF67D /* ViewController.swift in Sources */,
 				8276BCB0269E1A9400ADF67D /* AppDelegate.swift in Sources */,
 				82E9817D26AC808400B411E0 /* FilterViewController.swift in Sources */,
+				82309F5026AF6E10002A0CE1 /* FilterChoiceViewController.swift in Sources */,
 				82C7E10726A60C3F00F1A2A3 /* CocktailDetailsViewController.swift in Sources */,
 				82C7E10926A60C9600F1A2A3 /* ingredientsCustomTableViewCell.swift in Sources */,
 				8276BCB2269E1A9400ADF67D /* SceneDelegate.swift in Sources */,
 				8276BCC626A4C15900ADF67D /* CocktailDetails.swift in Sources */,
+				82309F5226AF7630002A0CE1 /* filterChoiceCollectionViewCell.swift in Sources */,
 				82E9817526AB846900B411E0 /* SearchCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

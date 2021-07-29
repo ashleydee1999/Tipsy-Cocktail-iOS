@@ -91,7 +91,7 @@ class CocktailDetailsViewController: UIViewController, UITableViewDelegate, UITa
         self.cocktailInfoLbl.text = "This a/an \((self.simpleArray?.strAlcoholic)!) \((self.simpleArray?.strCategory)!)"
         
         let mirror = Mirror(reflecting: simpleArray!)
-        //var rawInstructions: [String] = []
+    
         let theInstructions = self.simpleArray!.strInstructions
         
         
