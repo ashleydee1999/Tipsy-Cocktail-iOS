@@ -56,6 +56,11 @@ class FilterDetailsViewController: UIViewController, UITableViewDelegate, UITabl
             case "Categories":
                 chosenCategory = fDetailsCollection[indexPath.row].strCategory!
                 cell.filterDetailsLbl?.text = fDetailsCollection[indexPath.row].strCategory!
+                let theQuery = "https://www.google.com/search?q=\(fDetailsCollection[indexPath.row].strCategory!)&source=lnms&tbm=isch"
+                
+                print("your link was: \(theQuery)")
+                let urlNew:String = theQuery.replacingOccurrences(of: " ", with: "+").trimmingCharacters(in: .whitespacesAndNewlines)
+                cell.filterDetailsIMG.downloaded(from: urlNew)
                 //cell.filterDetailsIMG.image = UIImage(named: "\(fDetailsCollection[indexPath.row].strDrink!)IMG")
                 
             case "Glasses":
