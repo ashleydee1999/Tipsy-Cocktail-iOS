@@ -45,7 +45,7 @@ class FilterChoiceViewController: UIViewController, UICollectionViewDataSource ,
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
     {
-        let cell = cocktailFilterChoiceCollectionView.dequeueReusableCell(withReuseIdentifier: "filterChoiceCellcocktailIDz", for: indexPath) as! filterChoiceCollectionViewCell
+        let cell = cocktailFilterChoiceCollectionView.dequeueReusableCell(withReuseIdentifier: "filterChoiceCellcocktailID", for: indexPath) as! filterChoiceCollectionViewCell
 
         cell.fChoiceLbl.text = cocktailCollection[indexPath.row].strDrink!.uppercased()
         
