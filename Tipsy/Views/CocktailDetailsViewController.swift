@@ -12,7 +12,7 @@ class CocktailDetailsViewController: UIViewController, UITableViewDelegate, UITa
 {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        return ingredientsName.count
+        return ingredientsMeasure.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
@@ -40,6 +40,7 @@ class CocktailDetailsViewController: UIViewController, UITableViewDelegate, UITa
     var simpleArray: CocktailsProperties?
     var ingredientsName: [String] = []
     var ingredientsMeasure: [String] = []
+    var ingredientsMeasureBalanced: [String] = []
     var prepInstructions: [String] = []
     
     
@@ -56,12 +57,14 @@ class CocktailDetailsViewController: UIViewController, UITableViewDelegate, UITa
         print("The received ID is \(cocktailID!)")
         
         downloadCocktailDetaillsJSON
-        {
+        { [self] in
             //print("The Cocktail Details are sorted")
             self.simpleArray = self.cocktailDetailsCollection[0]
             self.setUp()
             
             self.ingredientsTableView.reloadData()
+            
+            print("The size of ingredients is: \(ingredientsName.count) and the size of measure: \(self.ingredientsMeasure.count)")
             
         }
         ingredientsTableView.delegate = self
@@ -133,6 +136,17 @@ class CocktailDetailsViewController: UIViewController, UITableViewDelegate, UITa
                 ingredientsMeasure.append(theValue ?? "")
             }
             
+        }
+        
+        //compare the sizes of the ingredients vs measure array
+        if ingredientsName.count != ingredientsMeasure.count
+        {
+           
+            for n in ingredientsMeasure.count ..< ingredientsName.count
+            {
+                ingredientsMeasure.append("N/A")
+            }
+           
         }
         
         self.ingredientsTableView.reloadData()
