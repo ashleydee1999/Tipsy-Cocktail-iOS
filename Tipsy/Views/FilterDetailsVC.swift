@@ -7,7 +7,7 @@
 
 import UIKit
 
-class FilterDetailsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource
+class FilterDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSource
 {
 
     @IBOutlet weak var fDetailsTableView: UITableView!
@@ -95,7 +95,7 @@ class FilterDetailsViewController: UIViewController, UITableViewDelegate, UITabl
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
         
-        if let destination = segue.destination as? FilterChoiceViewController
+        if let destination = segue.destination as? FilterChoiceVC
         {
             switch chosenFilter
             {

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SearchViewController: UIViewController, UISearchBarDelegate, UICollectionViewDataSource , UICollectionViewDelegate, UICollectionViewDelegateFlowLayout
+class SearchVC: UIViewController, UISearchBarDelegate, UICollectionViewDataSource , UICollectionViewDelegate, UICollectionViewDelegateFlowLayout
 {
     var cocktailCollection = [CocktailsProperties]()
     @IBOutlet weak var searchCollectionView: UICollectionView!
@@ -84,7 +84,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UICollectionV
     {
        // print("\(cocktailCollection[indexPath.row].strDrink): \(cocktailCollection[indexPath.row].idDrink)")
         
-        let destination = storyboard?.instantiateViewController(identifier: "CocktailDetailsViewController") as? CocktailDetailsViewController
+        let destination = storyboard?.instantiateViewController(identifier: "CocktailDetailsViewController") as? CocktailDetailsVC
         destination!.cocktailID = cocktailCollection[indexPath.row].idDrink
         self.navigationController?.pushViewController(destination!, animated: true)
     }

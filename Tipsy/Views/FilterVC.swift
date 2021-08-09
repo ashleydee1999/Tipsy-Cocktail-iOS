@@ -1,9 +1,8 @@
 import UIKit
 
-class FilterViewController: UIViewController, UICollectionViewDataSource , UICollectionViewDelegate, UICollectionViewDelegateFlowLayout
+class FilterVC: UIViewController, UICollectionViewDataSource , UICollectionViewDelegate, UICollectionViewDelegateFlowLayout
 {
     
-    //var filterCollection = [FilterItem]()
     var filterCollection = FilterItem.all()
     
     @IBOutlet weak var filterCollectionView: UICollectionView!
@@ -55,7 +54,7 @@ class FilterViewController: UIViewController, UICollectionViewDataSource , UICol
     {
        // print("\(cocktailCollection[indexPath.row].strDrink): \(cocktailCollection[indexPath.row].idDrink)")
         
-        let destination = storyboard?.instantiateViewController(identifier: "FilterDetailsViewController") as? FilterDetailsViewController
+        let destination = storyboard?.instantiateViewController(identifier: "FilterDetailsViewController") as? FilterDetailsVC
         destination!.fDetailsURL = filterCollection[indexPath.row].url
         destination!.chosenFilter = filterCollection[indexPath.row].name
         self.navigationController?.pushViewController(destination!, animated: true)

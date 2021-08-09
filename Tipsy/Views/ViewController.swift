@@ -63,7 +63,7 @@ class ViewController: UIViewController, UICollectionViewDataSource , UICollectio
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
     {
         
-        let destination = storyboard?.instantiateViewController(identifier: "CocktailDetailsViewController") as? CocktailDetailsViewController
+        let destination = storyboard?.instantiateViewController(identifier: "CocktailDetailsViewController") as? CocktailDetailsVC
         destination!.cocktailID = cocktailCollection[indexPath.row].idDrink
         self.navigationController?.pushViewController(destination!, animated: true)
     }

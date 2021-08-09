@@ -7,33 +7,20 @@
 
 import UIKit
 import Foundation
+import CoreData
 
-class CocktailDetailsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource
+class CocktailDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataSource
 {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
-    {
-        return ingredientsMeasure.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
-    {
-        let cell = ingredientsTableView.dequeueReusableCell(withIdentifier: "ingredientsCustomCell") as! ingredientsCustomTableViewCell
-        
-        cell.cocktailIMG.image = UIImage(named: ingredientsName[indexPath.row])
-        cell.ingredientsLbl?.text = ingredientsName[indexPath.row]
-        cell.measurementsLbl?.text = ingredientsMeasure[indexPath.row]
-        
-        
-        return cell
-    }
-    
 
     @IBOutlet weak var cocktailNameLbl: UILabel!
-    @IBOutlet weak var favouritesIMG: UIImageView!
+    @IBOutlet weak var favouritesButton: UIButton!
     @IBOutlet weak var cocktailIMG: UIImageView!
     @IBOutlet weak var cocktailInfoLbl: UILabel!
     @IBOutlet weak var instructionsLbl: UILabel!
     @IBOutlet weak var ingredientsTableView: UITableView!
+    
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    private var models = [FavouriteCocktailsCD]()
     
     var cocktailID: String?
     var cocktailDetailsCollection = [CocktailsProperties]()
@@ -72,6 +59,51 @@ class CocktailDetailsViewController: UIViewController, UITableViewDelegate, UITa
         
     }
     
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    {
+        return ingredientsMeasure.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
+    {
+        let cell = ingredientsTableView.dequeueReusableCell(withIdentifier: "ingredientsCustomCell") as! ingredientsCustomTableViewCell
+        
+        cell.cocktailIMG.image = UIImage(named: ingredientsName[indexPath.row])
+        cell.ingredientsLbl?.text = ingredientsName[indexPath.row]
+        cell.measurementsLbl?.text = ingredientsMeasure[indexPath.row]
+        
+        
+        return cell
+    }
+    
+    @IBAction func favouritesTapped(_ sender: Any)
+    {
+        let checkRecord = checkIfExists((simpleArray!.idDrink)!)
+        
+        if checkRecord == false
+        {
+            addFavouriteCocktail((simpleArray?.idDrink)!)
+            let alert  = UIAlertController(title: "Succesfully Addded", message: "\((simpleArray?.strDrink)!) added to your favourites!", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true)
+        }
+        else
+        {
+            self.favouritesButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+            
+            let alert  = UIAlertController(title: "Existing Item", message: "Already in favourites!", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { [weak self] _ in
+                self?.deleteFavourite((self!.simpleArray?.idDrink)!)
+                
+                let notifier  = UIAlertController(title: "Succesfully Removed", message: "\((self!.simpleArray?.strDrink)!) removed from your favourites!", preferredStyle: .alert)
+                notifier.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self!.present(notifier, animated: true)
+                
+            }))
+            self.present(alert, animated: true)
+        }
+    }
     func removeWhiteSpaces(str:String) -> String
     {
         var newStr = str
@@ -138,7 +170,10 @@ class CocktailDetailsViewController: UIViewController, UITableViewDelegate, UITa
             
         }
         
-        //compare the sizes of the ingredients vs measure array
+        /*
+            Compare the sizes of the ingredients array vs measures array
+            The measures array may be smaller than the ingredients array, because the last ingredient hasn't got a measure
+         */
         if ingredientsName.count != ingredientsMeasure.count
         {
            
@@ -193,5 +228,79 @@ class CocktailDetailsViewController: UIViewController, UITableViewDelegate, UITa
             }
         }.resume()
     
+    }
+    
+    
+    //Core Data Management
+    
+    func addFavouriteCocktail( _ itemID: String)
+    {
+        let newItem = FavouriteCocktailsCD(context: context) //The context from line 20
+        
+        newItem.idFavDrink = itemID
+        
+        do
+        {
+            try context.save()
+            print("Favourite Cocktail Saved")
+        }
+        catch
+        {
+            print("Save Error: \(error.localizedDescription)")
+        }
+       
+    }
+    
+    func checkIfExists( _ itemID: String) -> Bool
+    {
+        var numRecords:Int = 0
+        
+        do
+        {
+            let request: NSFetchRequest<FavouriteCocktailsCD> = FavouriteCocktailsCD.fetchRequest()
+            request.predicate = NSPredicate(format: "idFavDrink == %@", itemID)
+        
+            numRecords = try context.count(for: request)
+            print("We're counting our items: \(numRecords)")
+        }
+        catch
+        {
+            print("Error in checking items: \(error.localizedDescription)")
+        }
+        if numRecords == 0
+        {
+            return false
+        }
+        else
+        {
+            return true
+            
+        }
+    }
+    
+    func deleteFavourite( _ itemID: String)
+    {
+        do{
+            let request: NSFetchRequest<FavouriteCocktailsCD> = FavouriteCocktailsCD.fetchRequest()
+            request.predicate = NSPredicate(format: "idFavDrink == %@", itemID)
+            
+            models = try context.fetch(request)
+        }
+       catch
+        {
+           
+       }
+
+        context.delete(models[0])
+        
+        do
+        {
+            try context.save()
+    
+        }
+        catch
+        {
+            print("Save Error: \(error.localizedDescription)")
+        }
     }
 }

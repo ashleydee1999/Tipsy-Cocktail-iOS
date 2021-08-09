@@ -7,7 +7,7 @@
 
 import UIKit
 
-class FilterChoiceViewController: UIViewController, UICollectionViewDataSource , UICollectionViewDelegate, UICollectionViewDelegateFlowLayout
+class FilterChoiceVC: UIViewController, UICollectionViewDataSource , UICollectionViewDelegate, UICollectionViewDelegateFlowLayout
 {
 
     @IBOutlet weak var cocktailFilterChoiceCollectionView: UICollectionView!
@@ -71,7 +71,7 @@ class FilterChoiceViewController: UIViewController, UICollectionViewDataSource ,
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
     {
         
-        let destination = storyboard?.instantiateViewController(identifier: "CocktailDetailsViewController") as? CocktailDetailsViewController
+        let destination = storyboard?.instantiateViewController(identifier: "CocktailDetailsViewController") as? CocktailDetailsVC
         destination!.cocktailID = cocktailCollection[indexPath.row].idDrink
         self.navigationController?.pushViewController(destination!, animated: true)
     }
