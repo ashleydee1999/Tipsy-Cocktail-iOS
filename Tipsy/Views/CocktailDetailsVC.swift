@@ -48,10 +48,8 @@ class CocktailDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataS
             //print("The Cocktail Details are sorted")
             self.simpleArray = self.cocktailDetailsCollection[0]
             self.setUp()
-            
+            favBtnStatus((simpleArray!.idDrink)!)
             self.ingredientsTableView.reloadData()
-            
-            print("The size of ingredients is: \(ingredientsName.count) and the size of measure: \(self.ingredientsMeasure.count)")
             
         }
         ingredientsTableView.delegate = self
@@ -83,19 +81,18 @@ class CocktailDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataS
         if checkRecord == false
         {
             addFavouriteCocktail((simpleArray?.idDrink)!)
+            self.favouritesButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
             let alert  = UIAlertController(title: "Succesfully Addded", message: "\((simpleArray?.strDrink)!) added to your favourites!", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             self.present(alert, animated: true)
         }
         else
         {
-            self.favouritesButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
-            
             let alert  = UIAlertController(title: "Existing Item", message: "Already in favourites!", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { [weak self] _ in
                 self?.deleteFavourite((self!.simpleArray?.idDrink)!)
-                
+                self!.favouritesButton.setImage(UIImage(systemName: "heart"), for: .normal)
                 let notifier  = UIAlertController(title: "Succesfully Removed", message: "\((self!.simpleArray?.strDrink)!) removed from your favourites!", preferredStyle: .alert)
                 notifier.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                 self!.present(notifier, animated: true)
@@ -186,6 +183,20 @@ class CocktailDetailsVC: UIViewController, UITableViewDelegate, UITableViewDataS
         
         self.ingredientsTableView.reloadData()
         
+    }
+    
+    func favBtnStatus( _ itemID: String)
+    {
+        let checkRecord = checkIfExists((simpleArray!.idDrink)!)
+        
+        if checkRecord == false
+        {
+            self.favouritesButton.setImage(UIImage(systemName: "heart"), for: .normal)
+        }
+        else
+        {
+            self.favouritesButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+        }
     }
     
     func downloadCocktailDetaillsJSON(completed: @escaping () -> ())

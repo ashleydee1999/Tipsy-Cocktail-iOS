@@ -10,7 +10,7 @@ import UIKit
 class FavouritesVC: UIViewController, UICollectionViewDataSource , UICollectionViewDelegate, UICollectionViewDelegateFlowLayout
 {
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    private var models = [FavouriteCocktailsCD]()
+    private var cdCocktailIDs = [FavouriteCocktailsCD]()
     @IBOutlet weak var favouritesCV: UICollectionView!
     var cocktailCollection = [CocktailsProperties]()
     override func viewDidLoad()
@@ -18,19 +18,20 @@ class FavouritesVC: UIViewController, UICollectionViewDataSource , UICollectionV
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool)
+    {
         super.viewWillAppear(animated)
-        getAllItems()
-        
-        favouritesCV.dataSource =  self
-        favouritesCV.delegate = self
-        favouritesCV.collectionViewLayout = UICollectionViewFlowLayout()
+        self.favouritesCV.reloadData()
+        getCDCocktails()
         cocktailCollection.removeAll()
         downloadCocktailDetaillsJSON {
             print("Attempting to download cocktails")
             self.favouritesCV.reloadData()
             print("Done downloading cocktails")
         }
+        favouritesCV.dataSource =  self
+        favouritesCV.delegate = self
+        favouritesCV.collectionViewLayout = UICollectionViewFlowLayout()
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
@@ -63,11 +64,11 @@ class FavouritesVC: UIViewController, UICollectionViewDataSource , UICollectionV
         return CGSize(width: 185, height: 216)
     }
     // Core Data
-    func getAllItems()
+    func getCDCocktails()
     {
         do
         {
-            models = try context.fetch(FavouriteCocktailsCD.fetchRequest())
+            cdCocktailIDs = try context.fetch(FavouriteCocktailsCD.fetchRequest())
             
         }
         catch
@@ -78,9 +79,9 @@ class FavouritesVC: UIViewController, UICollectionViewDataSource , UICollectionV
     
     func downloadCocktailDetaillsJSON(completed: @escaping () -> ())
     {
-        for i in 0 ..< models.count
+        for i in 0 ..< cdCocktailIDs.count
         {
-            let item = models[i].idFavDrink as String?
+            let item = cdCocktailIDs[i].idFavDrink as String?
             
             let queryURL = "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=\(item!)"
             let url = URL(string: queryURL)!

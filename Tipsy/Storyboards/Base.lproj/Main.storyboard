@@ -167,12 +167,6 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0aU-wJ-DoS">
                                 <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Cocktail Name" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Cd-tQ-oX7">
-                                        <rect key="frame" x="21" y="16" width="122" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cocktail Info" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qE2-vl-bYn">
                                         <rect key="frame" x="160" y="243" width="94.5" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -275,7 +269,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5jZ-gb-g3j">
-                                        <rect key="frame" x="339" y="11" width="46" height="38"/>
+                                        <rect key="frame" x="353" y="8" width="46" height="38"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="">
                                             <imageReference key="image" image="heart" catalog="system"/>
@@ -284,27 +278,33 @@
                                             <action selector="favouritesTapped:" destination="IHt-q8-sgV" eventType="touchUpInside" id="Si9-Ot-Bsb"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cocktail Name" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Cd-tQ-oX7">
+                                        <rect key="frame" x="11" y="16" width="111" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="xKl-xW-4x1" secondAttribute="trailing" id="14Y-lP-IBy"/>
-                                    <constraint firstItem="5jZ-gb-g3j" firstAttribute="top" secondItem="0aU-wJ-DoS" secondAttribute="top" constant="11" id="5Zh-bb-Ylr"/>
                                     <constraint firstItem="qE2-vl-bYn" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="0aU-wJ-DoS" secondAttribute="leading" constant="20" symbolic="YES" id="6Nf-46-7kP"/>
-                                    <constraint firstAttribute="bottom" secondItem="xKl-xW-4x1" secondAttribute="bottom" id="7wX-83-SUL"/>
+                                    <constraint firstAttribute="bottom" secondItem="xKl-xW-4x1" secondAttribute="bottom" constant="35" id="7wX-83-SUL"/>
                                     <constraint firstItem="xKl-xW-4x1" firstAttribute="leading" secondItem="0aU-wJ-DoS" secondAttribute="leading" id="8UF-1W-t77"/>
-                                    <constraint firstItem="3Cd-tQ-oX7" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="0aU-wJ-DoS" secondAttribute="leading" constant="20" symbolic="YES" id="Eab-ij-VQE"/>
+                                    <constraint firstItem="3Cd-tQ-oX7" firstAttribute="leading" secondItem="0aU-wJ-DoS" secondAttribute="leading" constant="11" id="B4S-vJ-ihs"/>
                                     <constraint firstItem="kSY-Oh-Qxh" firstAttribute="top" secondItem="0aU-wJ-DoS" secondAttribute="top" constant="68" id="HC3-i2-75g"/>
                                     <constraint firstAttribute="trailing" secondItem="kSY-Oh-Qxh" secondAttribute="trailing" constant="120" id="LDg-vV-HGc"/>
                                     <constraint firstItem="qE2-vl-bYn" firstAttribute="top" secondItem="kSY-Oh-Qxh" secondAttribute="bottom" constant="29" id="MHz-cC-ZiF"/>
                                     <constraint firstItem="xKl-xW-4x1" firstAttribute="centerX" secondItem="qE2-vl-bYn" secondAttribute="centerX" id="PqL-ip-qDN"/>
+                                    <constraint firstAttribute="trailing" secondItem="5jZ-gb-g3j" secondAttribute="trailing" constant="15" id="Wdo-LJ-VjE"/>
                                     <constraint firstItem="kSY-Oh-Qxh" firstAttribute="leading" secondItem="0aU-wJ-DoS" secondAttribute="leading" constant="121" id="ZCk-Ch-q6k"/>
                                     <constraint firstItem="xKl-xW-4x1" firstAttribute="top" secondItem="zmK-GA-jbA" secondAttribute="bottom" constant="20" id="b3G-KW-yPb"/>
                                     <constraint firstItem="zmK-GA-jbA" firstAttribute="leading" secondItem="0aU-wJ-DoS" secondAttribute="leading" constant="21" id="cdX-Ah-z3V"/>
                                     <constraint firstAttribute="trailing" secondItem="zmK-GA-jbA" secondAttribute="trailing" constant="20" id="dL7-fp-y3T"/>
                                     <constraint firstItem="zmK-GA-jbA" firstAttribute="top" secondItem="qE2-vl-bYn" secondAttribute="bottom" constant="25" id="eoJ-pd-yqq"/>
-                                    <constraint firstItem="3Cd-tQ-oX7" firstAttribute="top" secondItem="0aU-wJ-DoS" secondAttribute="top" constant="16" id="g0h-56-AYd"/>
-                                    <constraint firstItem="5jZ-gb-g3j" firstAttribute="leading" secondItem="3Cd-tQ-oX7" secondAttribute="trailing" constant="196" id="ju6-2z-rRZ"/>
+                                    <constraint firstItem="3Cd-tQ-oX7" firstAttribute="top" secondItem="0aU-wJ-DoS" secondAttribute="top" constant="16" id="pPV-Yf-VSd"/>
+                                    <constraint firstItem="5jZ-gb-g3j" firstAttribute="leading" relation="lessThanOrEqual" secondItem="3Cd-tQ-oX7" secondAttribute="trailing" constant="231" id="sMU-OT-93W"/>
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="qE2-vl-bYn" secondAttribute="trailing" constant="20" symbolic="YES" id="uYk-tk-hOR"/>
-                                    <constraint firstAttribute="trailing" secondItem="5jZ-gb-g3j" secondAttribute="trailing" constant="29" id="yrK-fb-dDB"/>
+                                    <constraint firstItem="5jZ-gb-g3j" firstAttribute="top" secondItem="0aU-wJ-DoS" secondAttribute="top" constant="8" id="zuA-UO-b2R"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
